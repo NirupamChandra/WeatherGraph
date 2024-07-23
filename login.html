@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+
+        .feedE{
+            display: none;
+        }
+
+        .feedP{
+            display: none;
+        }
+
+        .feedN{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <form action="./test.html" onsubmit="return validate()">
+
+        <label>Email</label><br>
+        <input type="text" id="ine"><br>
+        <p class="feedE">Invalid Email</p>
+        <label>Password</label><br>
+        <input type="password" id="inp"><br>
+        <p class="feedP">Invalid Password</p>
+        <label>Phone</label><br>
+        <input type="number" id="inn">
+        <p class="feedN">Invalid Number</p><br>
+        <button type="submit">Login</button>
+
+    </form>
+    
+    <script>
+
+        function validate()
+        {
+
+            document.querySelector(".feedE").style.display = "none";
+            document.querySelector(".feedP").style.display = "none";
+
+            var mail = document.querySelector("#ine").value;
+            var pass = document.querySelector("#inp").value;
+            var num = document.querySelector("#inn").value;
+
+            var regx = /^([a-zA-Z0-9\.-]+)@([a-z0-9-]+)\.([a-z]{2,9})(\.[a-z]{2,5})?$/;
+
+            var regxPass = /^([a-z0-9]+)$/;
+
+            var regxNum = /^([6-9]+)([0-9]{9})$/;
+
+            if(regx.test(mail))
+            {
+                document.querySelector(".feedE").style.display = "none";
+            }
+            else
+            {
+                document.querySelector(".feedE").style.display = "block";
+                return false;
+            }
+
+            if(regxPass.test(pass))
+            {
+                document.querySelector(".feedP").style.display = "none";
+            }
+            else
+            {
+                document.querySelector(".feedP").style.display = "block";
+                return false;
+            }
+
+            if(regxNum.test(num))
+            {
+                document.querySelector(".feedN").style.display = "none";
+            }
+            else{
+                document.querySelector(".feedN").style.display = "block";
+                return false;
+            }
+
+            return true;
+            
+        }
+
+
+    </script>
+</body>
+</html>

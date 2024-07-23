@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+</head>
+<body>
+    <h1>Cart Page : </h1>
+    <ul>
+        <li>
+            <span>Product 1 - $10</span>
+            <input type="button" value="Add to cart" onclick="addToCart('Product 1', 10)">
+            <input type="button" value="Remove" onclick="remove('Product 1', 10)">
+        </li>
+
+        <li>
+            <span>Product 2 - $20</span>
+            <input type="button" value="Add to cart" onclick="addToCart('Product 2', 20)">
+            <input type="button" value="Remove" onclick="remove('Product 2', 20)">
+        </li>
+    </ul>
+
+    <div class="cart">
+        <h2>Cart : </h2>
+        <ul class="cartItems">
+            
+        </ul>
+
+        <h3>Subtotal : <span class="total">$0</span></h3>
+        <input type="button" value="Buy Now" onclick="goToBuyPage()">
+    </div>
+    
+
+    <script>
+
+        let cart=[];
+
+        if(cart.length == 0)
+        {
+            document.querySelector(".cartItems").innerHTML = "No Items In Cart!!";
+            document.querySelector(".cart").style.display = "none";
+        }
+
+        function addToCart(productName, price)
+        {
+            const index = cart.findIndex(item => item.name === productName);
+
+            if(index !== -1)
+            {
+                cart[index].quantity += 1;
+            }
+            else{
+                cart.push({name: productName, price: price, quantity: 1});
+            }
+
+            displayCart();
+        }
+
+        function remove(productName, price)
+        {
+            var index = cart.findIndex(item => item.name === productName);
+
+            if(index!== -1)
+            {
+                if(cart[index].quantity > 1)
+                {
+                    cart[index].quantity -= 1;
+                }
+                else{
+                    cart.splice(index, 1);
+                }
+            }
+
+            displayCart();
+        }
+
+        function displayCart()
+        {
+            var cartItems = document.querySelector(".cartItems");
+            cartItems.innerHTML = '';
+
+            cart.forEach(item =>{
+
+                var listItem = document.createElement("li");
+                listItem.textContent = `${item.name} x $${item.price} - ${item.quantity}`;
+
+                cartItems.append(listItem);
+            });
+
+            if(cart.length == 0)
+            {
+                document.querySelector(".cartItems").innerHTML = "No Items In Cart!!";
+                document.querySelector(".cart").style.display = "none";
+            }
+            else{
+                document.querySelector(".cart").style.display = "block";
+            }
+
+            totalSum();
+        }
+
+        function totalSum()
+        {
+            var sum = 0;
+
+            cart.forEach(item => {
+                
+                sum += item.price*item.quantity;
+            })
+
+            document.querySelector(".total").innerHTML = `$${sum}`;
+        }
+
+        function goToBuyPage()
+        {
+            if(cart.length != 0)
+            {
+                window.location.href = "./test.html";
+            }
+        }
+
+    </script>
+</body>
+</html>

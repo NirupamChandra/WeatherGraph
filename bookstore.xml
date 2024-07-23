@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model?>
+<bookstore>
+    
+    <book>
+        <bname>asgf</bname>
+        <bauthor>fsg</bauthor>
+        <bprice>45</bprice>
+    </book>
+
+    <book>
+        <bname>fgjfg</bname>
+        <bauthor>dfdsdh</bauthor>
+        <bprice>45</bprice>
+    </book>
+
+    <book>
+        <bname>dhfjd</bname>
+        <bauthor>jhsgf</bauthor>
+        <bprice>45</bprice>
+    </book>
+</bookstore>

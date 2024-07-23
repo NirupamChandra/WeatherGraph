@@ -1,0 +1,5 @@
+<!ELEMENT bookstore (book+)>
+<!ELEMENT book (bname, bauthor, bprice)>
+<!ELEMENT bname (#PCDATA)>
+<!ELEMENT bprice (#PCDATA)>
+<!ELEMENT bauthor (#PCDATA)>
